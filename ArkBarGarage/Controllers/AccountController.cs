@@ -83,6 +83,7 @@ namespace ArkBarGarage.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                   // Session["UserId"] = User.Identity.GetUserId();
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

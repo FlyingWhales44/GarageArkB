@@ -20,8 +20,14 @@ namespace ArkBarGarage.Controllers
         // GET: CarsModels
         public ActionResult Index()
         {
-            var car = db.Car.Include(c => c.Owner);
-            return View(car.ToList());
+            return View(db.Car.ToList());
+        }
+
+        public ActionResult MyIndex()
+        {
+            string usrID= User.Identity.GetUserId();
+            var o=db.Owner.Single(x => x.UserID == usrID);
+            return View(o.Cars.ToList());
         }
 
         // GET: CarsModels/Details/5
@@ -57,18 +63,16 @@ namespace ArkBarGarage.Controllers
             //string fname = Path.GetFileNameWithoutExtension(carsModels.ImageFile.FileName);
             //string extension = Path.GetExtension(carsModels.ImageFile.FileName);
             //fname = fname + DateTime.Now.ToString("yymmssfff") + extension;
-
             //carsModels.PhotoURL = fname;
 
             if (ModelState.IsValid)
             {
-                using (GarageContext db = new GarageContext())
-                {
-                    db.Car.Add(carsModels);
-                    var result = db.Owner.SingleOrDefault(b => b.UserID == User.Identity.GetUserId());
-                    result.Cars.Add(carsModels);
-                    db.SaveChanges();
-                }
+                db.Car.Add(carsModels);
+                string usrID = User.Identity.GetUserId();
+                var o = db.Owner.Where(x => x.UserID == usrID).FirstOrDefault();
+                o.Cars.Add(carsModels);
+                db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
