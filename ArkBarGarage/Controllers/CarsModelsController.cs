@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using ClassicGarageArkBar.DAL;
 using ClassicGarageArkBar.Models;
+using Microsoft.AspNet.Identity;
 
 namespace ArkBarGarage.Controllers
 {
@@ -53,16 +54,21 @@ namespace ArkBarGarage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Brand,Model,YearOfProduction,VIN,Series,PhotoURL,ImageFile,PuchaseDate,SaleDate,PuchasePrice,SellingPrice,OwnerId")] CarsModels carsModels)
         {
-            string fname = Path.GetFileNameWithoutExtension(carsModels.ImageFile.FileName);
-            string extension = Path.GetExtension(carsModels.ImageFile.FileName);
-            fname = fname + DateTime.Now.ToString("yymmssfff") + extension;
+            //string fname = Path.GetFileNameWithoutExtension(carsModels.ImageFile.FileName);
+            //string extension = Path.GetExtension(carsModels.ImageFile.FileName);
+            //fname = fname + DateTime.Now.ToString("yymmssfff") + extension;
 
-            carsModels.PhotoURL = fname;
+            //carsModels.PhotoURL = fname;
 
             if (ModelState.IsValid)
             {
-                db.Car.Add(carsModels);
-                db.SaveChanges();
+                using (GarageContext db = new GarageContext())
+                {
+                    db.Car.Add(carsModels);
+                    var result = db.Owner.SingleOrDefault(b => b.UserID == User.Identity.GetUserId());
+                    result.Cars.Add(carsModels);
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
 

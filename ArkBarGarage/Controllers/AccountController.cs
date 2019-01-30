@@ -162,6 +162,7 @@ namespace ArkBarGarage.Controllers
                     using (GarageContext db = new GarageContext())
                     {
                         var m = new OwnerModels { Email = model.Email, Name = model.Name, Surname = model.Surname, PhoneNumber = model.PhoneNumber };
+                        m.UserID = User.Identity.GetUserId();
                         db.Owner.Add(m);
                         db.SaveChanges();
                     }
