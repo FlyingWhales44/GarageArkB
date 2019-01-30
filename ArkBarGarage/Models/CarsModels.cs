@@ -15,10 +15,7 @@ namespace ClassicGarageArkBar.Models
         public int VIN { get; set; }
         public string Series { get; set; }
 
-        [DisplayName("Upload File")]
         public string PhotoURL { get; set; }
-
-        public HttpPostedFileBase ImageFile { get; set; }
 
         public DateTime PuchaseDate { get; set; }
         public DateTime SaleDate { get; set; }

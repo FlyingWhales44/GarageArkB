@@ -11,6 +11,8 @@ using Microsoft.Owin.Security;
 using ArkBarGarage.Models;
 using ClassicGarageArkBar.DAL;
 using ClassicGarageArkBar.Models;
+using System.Web.Security;
+using System.Web.UI.WebControls;
 
 namespace ArkBarGarage.Controllers
 {
@@ -162,7 +164,7 @@ namespace ArkBarGarage.Controllers
                     using (GarageContext db = new GarageContext())
                     {
                         var m = new OwnerModels { Email = model.Email, Name = model.Name, Surname = model.Surname, PhoneNumber = model.PhoneNumber };
-                        m.UserID = User.Identity.GetUserId();
+                        m.UserID = user.Id;
                         db.Owner.Add(m);
                         db.SaveChanges();
                     }

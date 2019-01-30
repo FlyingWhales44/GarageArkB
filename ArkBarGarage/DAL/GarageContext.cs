@@ -9,7 +9,7 @@ namespace ClassicGarageArkBar.DAL
 {
     public class GarageContext : DbContext
     {
-       // public GarageContext() : base("name=ClassicGarageArkBarConnection") { }
+        public GarageContext() : base("name=DefaultConnection") { }
 
         public DbSet<CarsModels> Car { get; set; }
 

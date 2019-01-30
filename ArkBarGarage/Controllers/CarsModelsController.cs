@@ -52,7 +52,7 @@ namespace ArkBarGarage.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Brand,Model,YearOfProduction,VIN,Series,PhotoURL,ImageFile,PuchaseDate,SaleDate,PuchasePrice,SellingPrice,OwnerId")] CarsModels carsModels)
+        public ActionResult Create([Bind(Include = "ID,Brand,Model,YearOfProduction,VIN,Series,PhotoURL,PuchaseDate,SaleDate,PuchasePrice,SellingPrice,OwnerId")] CarsModels carsModels)
         {
             //string fname = Path.GetFileNameWithoutExtension(carsModels.ImageFile.FileName);
             //string extension = Path.GetExtension(carsModels.ImageFile.FileName);
@@ -97,7 +97,7 @@ namespace ArkBarGarage.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Brand,Model,YearOfProduction,VIN,Series,PhotoURL,ImageFile,PuchaseDate,SaleDate,PuchasePrice,SellingPrice,OwnerId")] CarsModels carsModels)
+        public ActionResult Edit([Bind(Include = "ID,Brand,Model,YearOfProduction,VIN,Series,PhotoURL,PuchaseDate,SaleDate,PuchasePrice,SellingPrice,OwnerId")] CarsModels carsModels)
         {
             if (ModelState.IsValid)
             {
