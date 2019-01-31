@@ -47,7 +47,7 @@ namespace ArkBarGarage.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,IdCar,Name,CatalogNr,PurchasePrice,SellingPrice,PurchaseDate,SellingDate")] PartsModels partsModels)
+        public ActionResult Create([Bind(Include = "ID,Name,CatalogNr,SellingPrice,description")] PartsModels partsModels)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace ArkBarGarage.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,IdCar,Name,CatalogNr,PurchasePrice,SellingPrice,PurchaseDate,SellingDate")] PartsModels partsModels)
+        public ActionResult Edit([Bind(Include = "ID,Name,CatalogNr,SellingPrice,description")] PartsModels partsModels)
         {
             if (ModelState.IsValid)
             {

@@ -216,6 +216,18 @@
     <Compile Include="Migrations\201901301451129_UserID.Designer.cs">
       <DependentUpon>201901301451129_UserID.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901310717350_carModel2.cs" />
+    <Compile Include="Migrations\201901310717350_carModel2.Designer.cs">
+      <DependentUpon>201901310717350_carModel2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901310732192_carModel3.cs" />
+    <Compile Include="Migrations\201901310732192_carModel3.Designer.cs">
+      <DependentUpon>201901310732192_carModel3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901310812072_carMode4.cs" />
+    <Compile Include="Migrations\201901310812072_carMode4.Designer.cs">
+      <DependentUpon>201901310812072_carMode4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdModel.cs" />
@@ -370,6 +382,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201901301451129_UserID.resx">
       <DependentUpon>201901301451129_UserID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901310717350_carModel2.resx">
+      <DependentUpon>201901310717350_carModel2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901310732192_carModel3.resx">
+      <DependentUpon>201901310732192_carModel3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901310812072_carMode4.resx">
+      <DependentUpon>201901310812072_carMode4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,12 +1,35 @@
 ﻿@model IEnumerable<ClassicGarageArkBar.Models.CarsModels>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "All Cars";
 }
 
-<h2>Index</h2>
+<h3> Cars </h3>
 
-<table class="table">
+@foreach(var m in Model)
+{
+    <div class="row panel panel-primary">
+        <div class="panel-heading">
+            <h5> @m.Brand</h5>
+        </div>
+        <div class="panel-body col-sm-8 ">
+            Model: @m.Model <hr />
+            Year of production: @m.YearOfProduction <hr />
+            Vin: @m.VIN <hr />
+
+
+            @Html.ActionLink("Details", "Details", new { id = m.ID })
+            <h4>  Price: @m.SellingPrice $</h4>
+        </div>
+
+        <div class="col-sm-4">
+            <img src="@m.PhotoURL" class="img-rounded left" style="height: 100%; width: 100%; object-fit: contain">
+        </div>
+    </div>
+}
+
+
+@*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Owner.Name)
@@ -85,4 +108,4 @@
     </tr>
 }
 
-</table>
+</table>*@

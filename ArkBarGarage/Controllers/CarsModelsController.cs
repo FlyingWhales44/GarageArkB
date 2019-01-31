@@ -23,11 +23,15 @@ namespace ArkBarGarage.Controllers
             return View(db.Car.ToList());
         }
 
+        [Authorize]
         public ActionResult MyIndex()
         {
             string usrID= User.Identity.GetUserId();
-            var o=db.Owner.Single(x => x.UserID == usrID);
-            return View(o.Cars.ToList());
+            var o=db.Owner.SingleOrDefault(x => x.UserID == usrID);
+            if (o != null)
+                return View(o.Cars.ToList());
+            else
+                return View();
         }
 
         // GET: CarsModels/Details/5
@@ -57,8 +61,9 @@ namespace ArkBarGarage.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Brand,Model,YearOfProduction,VIN,Series,PhotoURL,PuchaseDate,SaleDate,PuchasePrice,SellingPrice,OwnerId")] CarsModels carsModels)
+        public ActionResult Create([Bind(Include = "ID,Brand,Model,YearOfProduction,VIN,Series,Phonenumber,PhotoURL,Description,SellingPrice,OwnerId")] CarsModels carsModels)
         {
             //string fname = Path.GetFileNameWithoutExtension(carsModels.ImageFile.FileName);
             //string extension = Path.GetExtension(carsModels.ImageFile.FileName);
@@ -67,9 +72,10 @@ namespace ArkBarGarage.Controllers
 
             if (ModelState.IsValid)
             {
-                db.Car.Add(carsModels);
                 string usrID = User.Identity.GetUserId();
                 var o = db.Owner.Where(x => x.UserID == usrID).FirstOrDefault();
+                carsModels.Phonenumber = o.PhoneNumber;
+                db.Car.Add(carsModels);           
                 o.Cars.Add(carsModels);
                 db.SaveChanges();
 
@@ -81,6 +87,7 @@ namespace ArkBarGarage.Controllers
         }
 
         // GET: CarsModels/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -100,8 +107,9 @@ namespace ArkBarGarage.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Brand,Model,YearOfProduction,VIN,Series,PhotoURL,PuchaseDate,SaleDate,PuchasePrice,SellingPrice,OwnerId")] CarsModels carsModels)
+        public ActionResult Edit([Bind(Include = "ID,Brand,Model,YearOfProduction,VIN,Series,Phonenumber,PhotoURL,Description,SellingPrice,OwnerId")] CarsModels carsModels)
         {
             if (ModelState.IsValid)
             {
@@ -114,6 +122,7 @@ namespace ArkBarGarage.Controllers
         }
 
         // GET: CarsModels/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)

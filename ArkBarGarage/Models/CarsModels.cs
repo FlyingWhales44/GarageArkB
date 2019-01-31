@@ -11,15 +11,12 @@ namespace ClassicGarageArkBar.Models
         public int ID { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }
-        public int YearOfProduction { get; set; }
-        public int VIN { get; set; }
+        public string YearOfProduction { get; set; }
+        public string VIN { get; set; }
         public string Series { get; set; }
-
+        public string Phonenumber { get; set; }
         public string PhotoURL { get; set; }
-
-        public DateTime PuchaseDate { get; set; }
-        public DateTime SaleDate { get; set; }
-        public float PuchasePrice { get; set; }
+        public string Description { get; set; }
         public float SellingPrice { get; set; }
         public int OwnerId { get; set; }
 
