@@ -63,7 +63,7 @@ namespace ArkBarGarage.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Brand,Model,YearOfProduction,VIN,Series,Phonenumber,PhotoURL,Description,SellingPrice,OwnerId")] CarsModels carsModels)
+        public ActionResult Create([Bind(Include = "ID,Brand,Model,YearOfProduction,VIN,Series,Phonenumber,PhotoURL,Description,SellingPrice")] CarsModels carsModels)
         {
             //string fname = Path.GetFileNameWithoutExtension(carsModels.ImageFile.FileName);
             //string extension = Path.GetExtension(carsModels.ImageFile.FileName);
@@ -82,7 +82,6 @@ namespace ArkBarGarage.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.OwnerId = new SelectList(db.Owner, "ID", "Name", carsModels.OwnerId);
             return View(carsModels);
         }
 
@@ -99,7 +98,6 @@ namespace ArkBarGarage.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.OwnerId = new SelectList(db.Owner, "ID", "Name", carsModels.OwnerId);
             return View(carsModels);
         }
 
@@ -109,7 +107,7 @@ namespace ArkBarGarage.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Brand,Model,YearOfProduction,VIN,Series,Phonenumber,PhotoURL,Description,SellingPrice,OwnerId")] CarsModels carsModels)
+        public ActionResult Edit([Bind(Include = "ID,Brand,Model,YearOfProduction,VIN,Series,Phonenumber,PhotoURL,Description,SellingPrice")] CarsModels carsModels)
         {
             if (ModelState.IsValid)
             {
@@ -117,7 +115,6 @@ namespace ArkBarGarage.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.OwnerId = new SelectList(db.Owner, "ID", "Name", carsModels.OwnerId);
             return View(carsModels);
         }
 

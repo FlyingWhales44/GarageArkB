@@ -6,7 +6,7 @@
 
 <h3> Cars </h3>
 
-@foreach(var m in Model)
+@foreach (var m in Model)
 {
     <div class="row panel panel-primary">
         <div class="panel-heading">
@@ -16,96 +16,18 @@
             Model: @m.Model <hr />
             Year of production: @m.YearOfProduction <hr />
             Vin: @m.VIN <hr />
+            Description: @m.Description<hr />
 
 
             @Html.ActionLink("Details", "Details", new { id = m.ID })
-            <h4>  Price: @m.SellingPrice $</h4>
+            <h4>  Price: @m.SellingPrice $</h4><hr />
+            Call me!: <button type="button" class="btn btn-danger" id="PhNumber" value="notThisValue">@m.Phonenumber</button>
         </div>
 
         <div class="col-sm-4">
             <img src="@m.PhotoURL" class="img-rounded left" style="height: 100%; width: 100%; object-fit: contain">
         </div>
     </div>
+
+
 }
-
-
-@*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Owner.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Brand)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Model)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.YearOfProduction)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VIN)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Series)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhotoURL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PuchaseDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SaleDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PuchasePrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SellingPrice)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Owner.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Brand)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Model)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.YearOfProduction)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VIN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Series)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhotoURL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PuchaseDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SaleDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PuchasePrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SellingPrice)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-        </td>
-    </tr>
-}
-
-</table>*@

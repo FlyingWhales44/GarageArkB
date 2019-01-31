@@ -6,86 +6,32 @@
 
 <h2>Index</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Owner.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Brand)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Model)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.YearOfProduction)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VIN)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Series)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhotoURL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PuchaseDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SaleDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PuchasePrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SellingPrice)
-        </th>
-        <th></th>
-    </tr>
+<h3> Cars </h3>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Owner.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.YearOfProduction)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VIN)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Series)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhotoURL)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PuchaseDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SaleDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PuchasePrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SellingPrice)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
-        </tr>
-    }
+@foreach (var m in Model)
+{
+    <div class="row panel panel-primary">
+        <div class="panel-heading">
+            <h5> @m.Brand</h5>
+        </div>
+        <div class="panel-body col-sm-8 ">
+            Model: @m.Model <hr />
+            Year of production: @m.YearOfProduction <hr />
+            Vin: @m.VIN <hr />
 
-</table>
+            @Html.ActionLink("Edit", "Edit", new { id = m.ID }) <hr />
+            @Html.ActionLink("Delete", "Delete", new { id = m.ID })<hr />
+            @Html.ActionLink("Details", "Details", new { id = m.ID })<hr />
+            <h4>  Price: @m.SellingPrice $</h4>
+        </div>
+
+        <div class="col-sm-4">
+            <img src="@m.PhotoURL" class="img-rounded left" style="height: 100%; width: 100%; object-fit: contain">
+        </div>
+    </div>
+}
+
+
+
+
+
