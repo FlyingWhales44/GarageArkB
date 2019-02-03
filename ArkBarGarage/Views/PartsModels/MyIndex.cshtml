@@ -1,10 +1,11 @@
 ﻿@model IEnumerable<ClassicGarageArkBar.Models.PartsModels>
 
+
 @{
-    ViewBag.Title = "All Parts";
+    ViewBag.Title = "My Parts";
 }
 
-<h2>Parts</h2>
+<h2>My Parts</h2>
 
 @foreach (var m in Model)
 {
@@ -16,6 +17,9 @@
             Catalog Nr: @m.CatalogNr <hr />
             Descrption: @m.description <hr />
 
+
+            @Html.ActionLink("Edit", "Edit", new { id = m.ID }) <hr />
+            @Html.ActionLink("Delete", "Delete", new { id = m.ID })<hr />
             @Html.ActionLink("Details", "Details", new { id = m.ID })<hr />
 
             <h4>  Part Price: @m.SellingPrice $</h4>

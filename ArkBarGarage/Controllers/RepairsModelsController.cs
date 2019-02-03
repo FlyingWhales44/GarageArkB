@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ClassicGarageArkBar.DAL;
 using ClassicGarageArkBar.Models;
+using Microsoft.AspNet.Identity;
 
 namespace ArkBarGarage.Controllers
 {
@@ -21,6 +22,17 @@ namespace ArkBarGarage.Controllers
             return View(db.RepairsModels.ToList());
         }
 
+        [Authorize]
+        public ActionResult MyIndex()
+        {
+            string usrID = User.Identity.GetUserId();
+            var o = db.Owner.SingleOrDefault(x => x.UserID == usrID);
+            if (o != null)
+                return View(o.Repairs.ToList());
+            else
+                return View();
+        }
+
         // GET: RepairsModels/Details/5
         public ActionResult Details(int? id)
         {
@@ -29,6 +41,13 @@ namespace ArkBarGarage.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             RepairsModels repairsModels = db.RepairsModels.Find(id);
+            var CarInfo = db.Car.FirstOrDefault(x => x.IdCar == repairsModels.IdCar);
+
+            ViewBag.CarModel = CarInfo.Model;
+            ViewBag.CarVIN = CarInfo.VIN;
+            ViewBag.CarSeries = CarInfo.Series;
+            ViewBag.CarBrand = CarInfo.Brand;
+
             if (repairsModels == null)
             {
                 return HttpNotFound();
@@ -37,8 +56,11 @@ namespace ArkBarGarage.Controllers
         }
 
         // GET: RepairsModels/Create
+        [Authorize]
         public ActionResult Create()
         {
+            List<CarsModels> carList = db.Car.ToList();
+            ViewBag.Cars = new SelectList(carList, "IdCar", "VIN");
             return View();
         }
 
@@ -46,11 +68,15 @@ namespace ArkBarGarage.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Description,RepairPrice")] RepairsModels repairsModels)
+        public ActionResult Create([Bind(Include = "ID,IdCar,Name,Description,RepairPrice")] RepairsModels repairsModels)
         {
             if (ModelState.IsValid)
             {
+                string usrID = User.Identity.GetUserId();
+                var o = db.Owner.Where(x => x.UserID == usrID).FirstOrDefault();
+                o.Repairs.Add(repairsModels);
                 db.RepairsModels.Add(repairsModels);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -60,6 +86,7 @@ namespace ArkBarGarage.Controllers
         }
 
         // GET: RepairsModels/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -71,6 +98,8 @@ namespace ArkBarGarage.Controllers
             {
                 return HttpNotFound();
             }
+            List<CarsModels> carList = db.Car.ToList();
+            ViewBag.Cars = new SelectList(carList, "IdCar", "VIN");
             return View(repairsModels);
         }
 
@@ -78,8 +107,9 @@ namespace ArkBarGarage.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Description,RepairPrice")] RepairsModels repairsModels)
+        public ActionResult Edit([Bind(Include = "ID,IdCar,Name,Description,RepairPrice")] RepairsModels repairsModels)
         {
             if (ModelState.IsValid)
             {

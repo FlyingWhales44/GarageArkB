@@ -1,11 +1,8 @@
 ﻿@model ClassicGarageArkBar.Models.CarsModels
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Car Edit";
 }
-
-<h2>Edit</h2>
-
 
 @using (Html.BeginForm())
 {
@@ -16,6 +13,12 @@
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.ID)
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Phonenumber)
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.IdCar)
 
     <div class="form-group">
         @Html.LabelFor(model => model.Brand, htmlAttributes: new { @class = "control-label col-md-2" })

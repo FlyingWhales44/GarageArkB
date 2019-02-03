@@ -8,6 +8,7 @@ namespace ClassicGarageArkBar.Models
     public class PartsModels
     {
         public int ID { get; set; }
+        public int IdCar { get; set; }
         public string Name { get; set; }
         public string CatalogNr { get; set; }
         public string SellingPrice { get; set; }

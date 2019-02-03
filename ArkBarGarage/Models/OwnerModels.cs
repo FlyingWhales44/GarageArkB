@@ -16,5 +16,7 @@ namespace ClassicGarageArkBar.Models
         public string Email { get; set; }
 
         public virtual ICollection<CarsModels> Cars { get; set; }
+        public virtual ICollection<RepairsModels> Repairs { get; set; }
+        public virtual ICollection<PartsModels> Parts { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace ClassicGarageArkBar.Models
     public class CarsModels
     {
         public int ID { get; set; }
+        public int IdCar { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }
         public string YearOfProduction { get; set; }

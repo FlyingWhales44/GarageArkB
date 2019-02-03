@@ -26,7 +26,7 @@
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown">Add an announcement about <span class="caret"></span></a>
                         <ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);">
                             <li>
-                                <a class="dropdown-item" >
+                                <a class="dropdown-item">
                                     @if (Request.IsAuthenticated)
                                     {@Html.ActionLink("Cars", "Create", "CarsModels")
                                 }
@@ -60,9 +60,17 @@
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown">I'm looking for <span class="caret"></span></a>
                         <ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);">
                             <li><a class="dropdown-item">@Html.ActionLink("Cars", "Index", "CarsModels")</a></li>
-                            <li><a class="dropdown-item">@Html.ActionLink("My Cars", "MyIndex", "CarsModels")</a></li>
                             <li><a class="dropdown-item">@Html.ActionLink("Parts", "Index", "PartsModels")</a></li>
                             <li><a class="dropdown-item">@Html.ActionLink("Repairs", "Index", "RepairsModels")</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">My announcements <span class="caret"></span></a>
+                        <ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);">
+                            <li><a class="dropdown-item">@Html.ActionLink("My Cars", "MyIndex", "CarsModels")</a></li>
+                            <li><a class="dropdown-item">@Html.ActionLink("My Parts", "MyIndex", "PartsModels")</a></li>
+                            <li><a class="dropdown-item">@Html.ActionLink("My Repairs", "MyIndex", "RepairsModels")</a></li>
                         </ul>
                     </li>
 

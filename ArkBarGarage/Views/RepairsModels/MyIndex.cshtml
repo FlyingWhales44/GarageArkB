@@ -1,4 +1,7 @@
 ﻿@model IEnumerable<ClassicGarageArkBar.Models.RepairsModels>
+@{
+    ViewBag.Title = "MyIndex";
+}
 
 @{
     ViewBag.Title = "Repairs";
@@ -14,6 +17,8 @@
             Description: @m.Description <hr />
             <h4>  Repair Price: @m.RepairPrice $</h4>
 
+            @Html.ActionLink("Edit", "Edit", new { id = m.ID }) <hr />
+            @Html.ActionLink("Delete", "Delete", new { id = m.ID })<hr />
             @Html.ActionLink("Details", "Details", new { id = m.ID })<hr />
 
         </div>

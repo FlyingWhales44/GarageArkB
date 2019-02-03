@@ -63,7 +63,7 @@ namespace ArkBarGarage.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Brand,Model,YearOfProduction,VIN,Series,Phonenumber,PhotoURL,Description,SellingPrice")] CarsModels carsModels)
+        public ActionResult Create([Bind(Include = "ID,IdCar,Brand,Model,YearOfProduction,VIN,Series,Phonenumber,PhotoURL,Description,SellingPrice")] CarsModels carsModels)
         {
             //string fname = Path.GetFileNameWithoutExtension(carsModels.ImageFile.FileName);
             //string extension = Path.GetExtension(carsModels.ImageFile.FileName);
@@ -75,6 +75,7 @@ namespace ArkBarGarage.Controllers
                 string usrID = User.Identity.GetUserId();
                 var o = db.Owner.Where(x => x.UserID == usrID).FirstOrDefault();
                 carsModels.Phonenumber = o.PhoneNumber;
+                carsModels.IdCar = db.Car.Count() + 1;
                 db.Car.Add(carsModels);           
                 o.Cars.Add(carsModels);
                 db.SaveChanges();
@@ -98,6 +99,8 @@ namespace ArkBarGarage.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Phonenumber = carsModels.Phonenumber;
+            ViewBag.IdCar = carsModels.IdCar;
             return View(carsModels);
         }
 
@@ -107,10 +110,11 @@ namespace ArkBarGarage.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Brand,Model,YearOfProduction,VIN,Series,Phonenumber,PhotoURL,Description,SellingPrice")] CarsModels carsModels)
+        public ActionResult Edit([Bind(Include = "ID,IdCar,Brand,Model,YearOfProduction,VIN,Series,Phonenumber,PhotoURL,Description,SellingPrice")] CarsModels carsModels)
         {
             if (ModelState.IsValid)
             {
+                //carsModels.IdCar = prev.IdCar;
                 db.Entry(carsModels).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

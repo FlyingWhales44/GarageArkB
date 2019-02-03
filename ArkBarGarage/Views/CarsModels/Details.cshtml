@@ -1,81 +1,27 @@
 ﻿@model ClassicGarageArkBar.Models.CarsModels
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Car Details";
 }
 
-<h2>Details</h2>
+<div class="row panel panel-primary">
+    <div class="panel-heading">
+        <h5> @Model.Brand</h5>
+    </div>
+    <div class="panel-body col-sm-8 ">
+        Model: @Model.Model <hr />
+        Year of production: @Model.YearOfProduction <hr />
+        Vin: @Model.VIN <hr />
 
-<div>
-    <h4>CarsModels</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Brand)
-        </dt>
+        <h4>  Price: @Model.SellingPrice $</h4>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Brand)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Model)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Model)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.YearOfProduction)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.YearOfProduction)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.VIN)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.VIN)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Series)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Series)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SellingPrice)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SellingPrice)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Phonenumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Phonenumber)
-        </dd>
-
-    </dl>
+    <div class="col-sm-4">
+        <img src="@Model.PhotoURL" class="img-rounded left" style="height: 100%; width: 100%; object-fit: contain">
+    </div>
 </div>
+    
+
 <p>
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -4,40 +4,23 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="row panel panel-primary">
+    <div class="panel-heading">
+        <h5> @Model.Name</h5>
+    </div>
+    <div class="panel-body col-sm-8 ">
+        Description: @Model.Description <hr />
+        <h4>  Repair Price: @Model.RepairPrice $</h4>
 
-<div>
-    <h4>RepairsModels</h4>
-    <hr />
-    <dl class="dl-horizontal">
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RepairPrice)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RepairPrice)
-        </dd>
-
-    </dl>
+        <h3>Car part's data:</h3><hr />
+        Brand: @ViewBag.CarBrand<hr />
+        Model: @ViewBag.CarModel<hr />
+        VIN: @ViewBag.CarVIN<hr />
+        Series: @ViewBag.CarSeries<hr />
+    </div>
 </div>
+
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
