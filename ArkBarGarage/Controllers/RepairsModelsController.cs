@@ -41,12 +41,13 @@ namespace ArkBarGarage.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             RepairsModels repairsModels = db.RepairsModels.Find(id);
-            var CarInfo = db.Car.FirstOrDefault(x => x.IdCar == repairsModels.IdCar);
+            var CarInfo = db.Car.FirstOrDefault(x => x.ID == repairsModels.IdCar);
 
             ViewBag.CarModel = CarInfo.Model;
             ViewBag.CarVIN = CarInfo.VIN;
             ViewBag.CarSeries = CarInfo.Series;
             ViewBag.CarBrand = CarInfo.Brand;
+            ViewBag.PhotoURL = CarInfo.PhotoURL;
 
             if (repairsModels == null)
             {
@@ -60,7 +61,7 @@ namespace ArkBarGarage.Controllers
         public ActionResult Create()
         {
             List<CarsModels> carList = db.Car.ToList();
-            ViewBag.Cars = new SelectList(carList, "IdCar", "VIN");
+            ViewBag.Cars = new SelectList(carList, "ID", "VIN");
             return View();
         }
 
@@ -99,7 +100,7 @@ namespace ArkBarGarage.Controllers
                 return HttpNotFound();
             }
             List<CarsModels> carList = db.Car.ToList();
-            ViewBag.Cars = new SelectList(carList, "IdCar", "VIN");
+            ViewBag.Cars = new SelectList(carList, "ID", "VIN");
             return View(repairsModels);
         }
 
@@ -121,6 +122,7 @@ namespace ArkBarGarage.Controllers
         }
 
         // GET: RepairsModels/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -136,6 +138,7 @@ namespace ArkBarGarage.Controllers
         }
 
         // POST: RepairsModels/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

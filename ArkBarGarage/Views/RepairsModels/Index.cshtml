@@ -11,7 +11,7 @@
             <h5> @m.Name</h5>
         </div>
         <div class="panel-body col-sm-8 ">
-            Description: @m.Description <hr />
+            <label class="control-label col-md-2">Description:</label> @m.Description <hr />
             <h4>  Repair Price: @m.RepairPrice $</h4>
 
             @Html.ActionLink("Details", "Details", new { id = m.ID })<hr />

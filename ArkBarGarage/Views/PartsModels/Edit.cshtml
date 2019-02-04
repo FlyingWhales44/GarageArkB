@@ -1,7 +1,7 @@
 ﻿@model ClassicGarageArkBar.Models.PartsModels
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Part Edit";
 }
 
 @using (Html.BeginForm())
@@ -9,7 +9,6 @@
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal">
-    <h4>PartsModels</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.ID)

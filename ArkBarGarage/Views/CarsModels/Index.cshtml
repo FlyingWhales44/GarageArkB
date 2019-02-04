@@ -13,10 +13,10 @@
             <h5> @m.Brand</h5>
         </div>
         <div class="panel-body col-sm-8 ">
-            Model: @m.Model <hr />
-            Year of production: @m.YearOfProduction <hr />
-            Vin: @m.VIN <hr />
-            Description: @m.Description<hr />
+            <label class="control-label col-md-2"> Model:</label> @m.Model <hr />
+            <label class="control-label col-md-2">Year of production:</label> @m.YearOfProduction <hr />
+            <label class="control-label col-md-2">Vin:</label> @m.VIN <hr />
+            <label class="control-label col-md-2">Description:</label> @m.Description<hr />
 
 
             @Html.ActionLink("Details", "Details", new { id = m.ID })

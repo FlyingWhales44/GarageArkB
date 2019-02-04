@@ -9,9 +9,10 @@
         <h5> @Model.Brand</h5>
     </div>
     <div class="panel-body col-sm-8 ">
-        Model: @Model.Model <hr />
-        Year of production: @Model.YearOfProduction <hr />
-        Vin: @Model.VIN <hr />
+        <label class="control-label col-md-2"> Model:</label> @Model.Model <hr />
+        <label class="control-label col-md-2">Year of production:</label> @Model.YearOfProduction <hr />
+        <label class="control-label col-md-2">Vin: </label>@Model.VIN <hr />
+        <label class="control-label col-md-2">Description:</label> @Model.Description<hr />
 
         <h4>  Price: @Model.SellingPrice $</h4>
     </div>

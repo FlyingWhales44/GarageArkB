@@ -75,7 +75,6 @@ namespace ArkBarGarage.Controllers
                 string usrID = User.Identity.GetUserId();
                 var o = db.Owner.Where(x => x.UserID == usrID).FirstOrDefault();
                 carsModels.Phonenumber = o.PhoneNumber;
-                carsModels.IdCar = db.Car.Count() + 1;
                 db.Car.Add(carsModels);           
                 o.Cars.Add(carsModels);
                 db.SaveChanges();
@@ -100,7 +99,6 @@ namespace ArkBarGarage.Controllers
                 return HttpNotFound();
             }
             ViewBag.Phonenumber = carsModels.Phonenumber;
-            ViewBag.IdCar = carsModels.IdCar;
             return View(carsModels);
         }
 
@@ -114,7 +112,6 @@ namespace ArkBarGarage.Controllers
         {
             if (ModelState.IsValid)
             {
-                //carsModels.IdCar = prev.IdCar;
                 db.Entry(carsModels).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

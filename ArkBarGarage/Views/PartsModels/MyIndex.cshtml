@@ -5,8 +5,6 @@
     ViewBag.Title = "My Parts";
 }
 
-<h2>My Parts</h2>
-
 @foreach (var m in Model)
 {
     <div class="row panel panel-primary">
@@ -14,8 +12,8 @@
             <h5> @m.Name</h5>
         </div>
         <div class="panel-body col-sm-8 ">
-            Catalog Nr: @m.CatalogNr <hr />
-            Descrption: @m.description <hr />
+            <label class="control-label col-md-2">Catalog Nr:</label> @m.CatalogNr <hr />
+            <label class="control-label col-md-2">Descrption:</label> @m.description <hr />
 
 
             @Html.ActionLink("Edit", "Edit", new { id = m.ID }) <hr />

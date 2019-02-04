@@ -9,14 +9,22 @@
         <h5> @Model.Name</h5>
     </div>
     <div class="panel-body col-sm-8 ">
-        Description: @Model.Description <hr />
-        <h4>  Repair Price: @Model.RepairPrice $</h4>
-
-        <h3>Car part's data:</h3><hr />
-        Brand: @ViewBag.CarBrand<hr />
-        Model: @ViewBag.CarModel<hr />
-        VIN: @ViewBag.CarVIN<hr />
-        Series: @ViewBag.CarSeries<hr />
+        <div class="row">
+            <label class="control-label col-md-2">Description:</label> @Model.Description <hr />
+            <h4>  Repair Price: @Model.RepairPrice $</h4>
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <h3>Car part's data:</h3><hr />
+                <label class="control-label col-md-2">Brand:</label> @ViewBag.CarBrand<hr />
+                <label class="control-label col-md-2">Model:</label> @ViewBag.CarModel<hr />
+                <label class="control-label col-md-2">VIN:</label> @ViewBag.CarVIN<hr />
+                <label class="control-label col-md-2">Series:</label> @ViewBag.CarSeries<hr />
+            </div>
+            <div class="col-lg-4">
+                <img src="@ViewBag.PhotoURL" class="img-rounded left" style=" object-fit: contain">
+            </div>
+        </div>
     </div>
 </div>
 

@@ -42,12 +42,13 @@ namespace ArkBarGarage.Controllers
             }
             PartsModels partsModels = db.PartsModels.Find(id);
 
-            var CarInfo = db.Car.FirstOrDefault(x => x.IdCar == partsModels.IdCar);
+            var CarInfo = db.Car.FirstOrDefault(x => x.ID == partsModels.IdCar);
 
             ViewBag.CarModel = CarInfo.Model;
             ViewBag.CarVIN = CarInfo.VIN;
             ViewBag.CarSeries = CarInfo.Series;
             ViewBag.CarBrand = CarInfo.Brand;
+            ViewBag.PhotoURL = CarInfo.PhotoURL;
 
             if (partsModels == null)
             {
@@ -57,10 +58,11 @@ namespace ArkBarGarage.Controllers
         }
 
         // GET: PartsModels/Create
+        [Authorize]
         public ActionResult Create()
         {
             List<CarsModels> carList = db.Car.ToList();
-            ViewBag.Cars = new SelectList(carList, "IdCar", "VIN");
+            ViewBag.Cars = new SelectList(carList, "ID", "VIN");
             return View();
         }
 
@@ -68,6 +70,7 @@ namespace ArkBarGarage.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,IdCar,Name,CatalogNr,SellingPrice,data,description")] PartsModels partsModels)
         {
@@ -85,6 +88,7 @@ namespace ArkBarGarage.Controllers
         }
 
         // GET: PartsModels/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -97,7 +101,7 @@ namespace ArkBarGarage.Controllers
                 return HttpNotFound();
             }
             List<CarsModels> carList = db.Car.ToList();
-            ViewBag.Cars = new SelectList(carList, "IdCar", "VIN");
+            ViewBag.Cars = new SelectList(carList, "ID", "VIN");
             return View(partsModels);
         }
 
@@ -105,6 +109,7 @@ namespace ArkBarGarage.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,IdCar,Name,CatalogNr,SellingPrice,data,description")] PartsModels partsModels)
         {
@@ -118,6 +123,7 @@ namespace ArkBarGarage.Controllers
         }
 
         // GET: PartsModels/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -134,6 +140,7 @@ namespace ArkBarGarage.Controllers
 
         // POST: PartsModels/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
